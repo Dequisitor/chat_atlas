@@ -1,0 +1,107 @@
+*
+	box-sizing border-box
+	
+body
+	background-color lightgray
+
+a#logout
+	margin-right 3%
+a#back
+	margin-left 3%
+div.center
+	font-size 24px
+	
+.hidden
+	display none
+	
+div.header
+	color white
+	text-align center
+	background-color rgba(0,0,0, 0.7)
+	height 45px
+	padding-top 5px
+
+form.chat
+	padding 3px
+	position fixed
+	bottom 0
+	margin 0 auto
+	width 100%
+
+	#log
+		font-size 10px
+		color gray
+
+	a#smileys
+		margin-left 1%
+		
+	input
+		padding 10px
+		width auto
+		margin-right 1%
+		margin-left 1%
+		
+	button#send
+		width 19%
+		padding 10px
+		margin-right 1%
+		
+	.popover
+		img 
+			cursor pointer
+			margin 1px
+
+div#userList
+	div.entry
+		margin 10px
+		
+		button.btn
+			width 180px
+		
+#messages
+	width 90%
+	margin-left auto
+	margin-right auto
+	clear both
+	overflow auto
+	
+	div.entryrow		
+		position relative		
+		clear both
+
+		div
+			display inline-block
+			word-wrap break-word
+			border-radius 10px
+			padding 5px 10px
+			margin 5px
+			transition width 1s
+
+		div.right
+			border 1px solid green
+			background #ccffcc
+			text-align right
+			float right
+		
+		div.left
+			border 1px solid #ffaa00
+			background #ffffbb
+			text-align left
+			float left
+
+		div.unseen
+			background-color white
+
+@media (min-width: 360px)
+	form.chat
+		button#send
+			width 19%
+		input#m
+			width 60%
+			
+@media (min-width: 800px)
+	form.chat
+		button#send
+			width 9%
+		input#m
+			width 82%

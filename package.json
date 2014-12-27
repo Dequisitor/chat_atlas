@@ -1,0 +1,22 @@
+{
+	"name": "chat-alpha",
+	"private": "true",
+	"version": "0.0.1",
+	"description": "nein",
+	"dependencies": {
+		"express": "*",
+		"socket.io": "*",
+		"jade": "*",
+		"stylus": "*",
+		"nib": "*",
+		"body-parser": "*",
+		"passport": "*",
+		"passport-local": "*",
+		"cookie-parser": "*",
+		"connect-flash": "*",
+		"bcrypt-nodejs": "*",
+		"morgan": "*",
+		"express-session": "*",
+		"mongoose": "*"
+	}
+}

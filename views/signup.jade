@@ -1,0 +1,27 @@
+extend layout
+block content
+	div.col-sm-6.col-sm-offset-3
+		h1 
+			span.glyphicon.glyphicon-check
+			|  Signup
+		- if (signupMessage.length > 0) {
+		div.alert.alert-danger #{signupMessage}
+		- }
+		form(method="POST", action='/signup').signup
+			div.form-group
+				label User Name
+				input(name="name", type="text", required='required', autofocus='autofocus').form-control
+			div.form-group
+				label Email
+				input(name="email", type="email", required='required').form-control
+			div.form-group
+				label Password
+				input#pwd0(name="passwd", type="password", required='required').form-control
+			div.form-group
+				label Confirm Password
+				input#pwd1(type="password", required='required').form-control
+			div.form-group
+				a(href="/login").btn.btn-success.btn-lg Login
+				button(type="submit").btn.btn-warning.btn-lg.pull-right Sign Up
+
+	script(src="javascripts/signup.js").

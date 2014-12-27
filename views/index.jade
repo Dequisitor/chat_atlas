@@ -1,0 +1,16 @@
+extend layout
+block content
+	div
+		div.messsageContainer
+			div#messages
+		form(action="", name="chat").chat
+			div#log
+			a.btn.btn-success.pull-left#smileys(href="#", data-toggle="popover", title="emoticons")
+				img(src="icons/smile.png", width="32", height="32")
+			button.btn.btn-success.pull-right#send Send
+			input#m(autocomplete="off", autofocus="autofocus")
+
+		script.
+			CurrentFrom = "#{from}"
+			CurrentTo = "#{to}"
+		script(src="javascripts/index.js").

@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #d3d3d3;
+}
+a#logout {
+  margin-right: 3%;
+}
+a#back {
+  margin-left: 3%;
+}
+div.center {
+  font-size: 24px;
+}
+.hidden {
+  display: none;
+}
+div.header {
+  color: #fff;
+  text-align: center;
+  background-color: rgba(0,0,0,0.7);
+  height: 45px;
+  padding-top: 5px;
+}
+form.chat {
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  margin: 0 auto;
+  width: 100%;
+}
+form.chat #log {
+  font-size: 10px;
+  color: #808080;
+}
+form.chat a#smileys {
+  margin-left: 1%;
+}
+form.chat input {
+  padding: 10px;
+  width: auto;
+  margin-right: 1%;
+  margin-left: 1%;
+}
+form.chat button#send {
+  width: 19%;
+  padding: 10px;
+  margin-right: 1%;
+}
+form.chat .popover img {
+  cursor: pointer;
+  margin: 1px;
+}
+div#userList div.entry {
+  margin: 10px;
+}
+div#userList div.entry button.btn {
+  width: 180px;
+}
+#messages {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  clear: both;
+  overflow: auto;
+}
+#messages div.entryrow {
+  position: relative;
+  clear: both;
+}
+#messages div.entryrow div {
+  display: inline-block;
+  word-wrap: break-word;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin: 5px;
+  transition: width 1s;
+}
+#messages div.entryrow div.right {
+  border: 1px solid #008000;
+  background: #cfc;
+  text-align: right;
+  float: right;
+}
+#messages div.entryrow div.left {
+  border: 1px solid #fa0;
+  background: #ffb;
+  text-align: left;
+  float: left;
+}
+#messages div.entryrow div.unseen {
+  background-color: #fff;
+}
+@media (min-width: 360px) {
+  form.chat button#send {
+    width: 19%;
+  }
+  form.chat input#m {
+    width: 60%;
+  }
+}
+@media (min-width: 800px) {
+  form.chat button#send {
+    width: 9%;
+  }
+  form.chat input#m {
+    width: 82%;
+  }
+}

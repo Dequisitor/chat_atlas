@@ -1,0 +1,23 @@
+doctype
+html
+	head
+		meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0")
+		//link(rel="stylesheet", href='stylesheets/font-awesome.min.css')
+		link(rel="stylesheet", href='stylesheets/bootstrap.min.css')
+		link(rel="stylesheet", href='stylesheets/main.css')
+		title meine chat programme		
+		script(src="javascripts/3rdparty/socket.io-1.2.0.js").
+		script(src="javascripts/3rdparty/jquery-1.11.1.js").
+		script(src="javascripts/3rdparty/bootstrap.min.js").
+	body
+		div.header
+			a.btn.btn-primary.pull-left.hidden#back(href="/")
+				span.glyphicon.glyphicon-arrow-left
+				|  Back
+			a.btn.btn-primary.pull-right.hidden#logout(href="/logout") Logout 
+				span.glyphicon.glyphicon-log-out
+			div.center #{title}
+	
+		block content
+
+		script(src="javascripts/layout.js").

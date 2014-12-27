@@ -1,0 +1,22 @@
+extend layout
+block content
+	div.col-sm-6.col-sm-offset-3
+		h1
+			span.fa.fa-sign-in 
+			|  Login
+		- if (loginMessage.length > 0) {
+		div.alert.alert-danger #{loginMessage}
+		- }
+		- if (signupMessage.length > 0) {
+		div.alert.alert-success #{signupMessage}
+		- }
+		form(method="POST", action="/login").login
+			div.form-group
+				label Name
+				input(name="name", type=text, autofocus="autofocus").form-control
+			div.form-group
+				label Password
+				input(name="passwd", type="password").form-control
+			div.form-group
+				a.btn.btn-success.btn-lg(href="/signup") Sign Up
+				button(type="submit").btn.btn-warning.btn-lg.pull-right Login				

@@ -1,0 +1,12 @@
+extend layout
+block content
+	div.col-sm-6.col-sm-offset-3
+		h3 Select user to chat with
+		form.main(method="POST", action="/")
+			input(type='hidden', name="from")#hiddenFrom
+			input(type='hidden', name="to")#hiddenTo
+			div.panel#userList
+
+	script.
+		CurrentUser = '#{user}'
+	script(src="javascripts/main.js").
