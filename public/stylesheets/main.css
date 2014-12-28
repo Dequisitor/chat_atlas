@@ -41,13 +41,11 @@ form.chat a#smileys {
 }
 form.chat input {
   padding: 10px;
-  width: auto;
-  margin-right: 1%;
 }
 form.chat button#send {
   width: 19%;
   padding: 10px;
-  margin-right: 1%;
+  margin-right: 10px;
 }
 form.chat .popover img {
   cursor: pointer;
@@ -106,6 +104,6 @@ div#userList div.entry button.btn {
     width: 9%;
   }
   form.chat input#m {
-    width: 82%;
+    width: 86%;
   }
 }
