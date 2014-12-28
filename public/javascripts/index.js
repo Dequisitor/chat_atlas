@@ -63,9 +63,10 @@ $(function () {
 			//clear input
 			$('#m').val('');
 		}
-
+		
 		socket.emit('typing_stop', CurrentFrom, CurrentTo);
 		$('#smileys').popover('hide');
+		$('#m').focus();
 		return false;
 	});
 
