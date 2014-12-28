@@ -18,6 +18,6 @@ require('./config/config')(app, passport);
 require('./app/routes')(app, io, passport);
 
 //start server
-http.listen(3000, '192.168.1.100', function() {
+http.listen(3000, function() {
 	console.log("listening on port 3000 ...");
 });

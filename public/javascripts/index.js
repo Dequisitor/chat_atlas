@@ -117,8 +117,10 @@ $(function () {
 	}
 
 	var prevTime = null;
-	var showTimeStamp = function (from) {
-		var time = !!prevTime ? prevTime : new Date();
+	var showTimeStamp = function (from, time) {
+		if (!time) {
+			time = !!prevTime ? prevTime : new Date();
+		}
 		var timestr = force2digits(time.getHours()) + ':' + force2digits(time.getMinutes()) + ':' + force2digits(time.getSeconds());
 		$('#log').html('Last message recieved from <b>' + from + '</b> at ' + timestr);		
 
