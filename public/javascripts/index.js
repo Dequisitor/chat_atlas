@@ -37,50 +37,12 @@ $(function () {
 		}
 	};
 
-	//message
-	$('form.chat').submit(function () {
-		if ($('#m').val().length > 0) {
-			if ($('#m').val() == "show emoticons" || $('#m').val() == "show smileys") {
-				var str = '';
-				emoticons.forEach(function (smiley) {
-					str += "'" + smiley.pattern + "'" + ' -> ' + '<img src="/icons/' + smiley.name + '.png" height="32" width="32"/><br/>';
-				});
-				
-				addMessage(str, 'left');
-			} else {
-				//emit message
-				socket.emit('chat message', $('#m').val(), CurrentFrom, CurrentTo);
-			}
-
-			//clear input
-			$('#m').val('');
-			socket.emit('typing_stop', CurrentFrom, CurrentTo);
-		}
-
-		$('#smileys').popover('hide');
-		return false;
-	});
-
-	var resize = function () {
-		var containerTop = $('#messages').offset().top;
-		var screenHeight = $(window).height();
-		var formHeight = $('form.chat').height();
+	//send message
+	var addMessage = function (msg, side) {
 		$('#messages')
-			.css('max-height', screenHeight - formHeight - containerTop - 20)
+			.append('<div class="entryrow"><div class="' + side + '">' + msg + '</div></div>')
 			.scrollTop($('#messages').prop('scrollHeight'));
 	};
-	$(window).resize(resize);
-	resize();
-
-	$('#m').on('keyup', function () {
-		notifySeen();
-		var text = $('#m').val();
-		if (text.length > 0) {
-			socket.emit('typing', CurrentFrom, CurrentTo);
-		} else {			
-			socket.emit('typing_stop', CurrentFrom, CurrentTo);
-		}
-	});
 
 	var parseMessage = function (msg) {
 		emoticons.forEach(function (smiley) {
@@ -93,11 +55,75 @@ $(function () {
 		return msg;
 	};
 
-	var addMessage = function (msg, side) {
+	$('form.chat').submit(function () {
+		if ($('#m').val().length > 0) {
+			//emit message
+			socket.emit('chat message', $('#m').val(), CurrentFrom, CurrentTo);
+
+			//clear input
+			$('#m').val('');
+		}
+
+		socket.emit('typing_stop', CurrentFrom, CurrentTo);
+		$('#smileys').popover('hide');
+		return false;
+	});
+
+	//typing
+	$('#m').on('keyup', function () {
+		notifySeen();
+		var text = $('#m').val();
+		if (text.length > 0) {
+			socket.emit('typing', CurrentFrom, CurrentTo);
+		} else {			
+			socket.emit('typing_stop', CurrentFrom, CurrentTo);
+		}
+	});
+
+	//window resize
+	var resize = function () {
+		var containerTop = $('#messages').offset().top;
+		var screenHeight = $(window).height();
+		var formHeight = $('form.chat').height();
 		$('#messages')
-			.append('<div class="entryrow"><div class="' + side + '">' + msg + '</div></div>')
+			.css('max-height', screenHeight - formHeight - containerTop - 20)
 			.scrollTop($('#messages').prop('scrollHeight'));
 	};
+	$(window).resize(resize);
+	resize();
+
+	//messageContainer scroll -> load older messages
+	var loadOlderMessages = function(from, to, done) {
+		$.get('/oldMessages?user0=' + from + '&user1=' + to + '&count=' + $('.entryrow').length, function (messages) {
+			var block = '';
+			messages.forEach(function (msg) {
+				msg.text = parseMessage(msg.text);
+				var side = msg.from == CurrentFrom ? 'left' : 'right';
+				block += '<div class="entryrow"><div class="' + side + '">' + msg.text + '</div></div>';
+			});
+			var firstMessage = $('.entryrow:first');
+			$('#messages').prepend(block);
+			
+			if (firstMessage.length > 0 && firstMessage.offset().top > $('#messages').height()) {
+				$('#messages').scrollTop(firstMessage.offset().top);
+			}
+
+			if (typeof done != 'undefined' && !!done) {
+				done();
+			}
+		});
+	};
+	loadOlderMessages(CurrentFrom, CurrentTo, function () {
+		$('#messages').scrollTop($('#messages').prop('scrollHeight'));
+	});
+
+	$('#messages').scroll(function () {
+		if ($(this).scrollTop() < 1) {
+			//load older messages
+			loadOlderMessages(CurrentFrom, CurrentTo);
+		};
+	});
+
 
 	//====================================================================//
 	//socket communication

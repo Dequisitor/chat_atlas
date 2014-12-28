@@ -101,6 +101,35 @@ module.exports = function(app, io, passport) {
 		res.send(emoticons);
 	});
 
+	app.get('/oldMessages', isLoggedIn, function (req, res) {
+		console.log(req.query);
+
+		Message.find({ from: { $in : [req.query.user0, req.query.user1] }, to: { $in : [req.query.user0, req.query.user1] }}, function (err, messages) {
+			if (!err) {
+				var skip = messages.length - req.query.count;
+				if (req.query.count == 0) {
+					if (skip > 15) {
+						skip -= 15;
+						messages = messages.splice(skip, 15);
+					} else {
+						messages = messages.splice(0, skip);
+					}
+				} else {
+					if (skip > 50) {
+						skip -= 50;
+						messages = messages.splice(skip, 50);
+					} else {
+						messages = messages.splice(0, skip);
+					}
+				}
+
+				res.send(messages);
+			} else {
+				res.send(err);
+			}
+		});
+	});
+
 	//======================================================//
 	//socket io
 	allConnections = [];
