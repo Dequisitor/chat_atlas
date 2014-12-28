@@ -31,17 +31,18 @@ form.chat {
   width: 100%;
 }
 form.chat #log {
+  margin-left: 68px;
   font-size: 10px;
-  color: #808080;
+  color: #a9a9a9;
 }
 form.chat a#smileys {
-  margin-left: 1%;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 form.chat input {
   padding: 10px;
   width: auto;
   margin-right: 1%;
-  margin-left: 1%;
 }
 form.chat button#send {
   width: 19%;
