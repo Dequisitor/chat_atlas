@@ -128,13 +128,14 @@ $(function () {
 	//====================================================================//
 	//socket communication
 	//====================================================================//
-	var unseen = false;
+	var unseen = 0;
 	var notifySeen = function () {
 		if (unseen) {
 			socket.emit('seen', CurrentFrom, CurrentTo);
 			$(window).unbind('mousemove');
 
-			unseen = false;
+			unseen = 0;
+			document.title = 'meine chat programme';
 		}
 	}
 
@@ -169,7 +170,8 @@ $(function () {
 		playNotification();
 
 		//add handlers to notify others if the reciever has seen the message
-		unseen = true;
+		unseen += 1;
+		document.title = '(' + unseen + ') meine chat programme';
 		$(window).on('mousemove', function () {
 			notifySeen();
 		});
