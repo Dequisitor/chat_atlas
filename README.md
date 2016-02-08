@@ -1,3 +1,4 @@
+## chat_atlas
 nodejs + socket.io chat program I wrote during the christmas holidays in 2014. The aim was to creat a web based no-installation needed chat client. Obviously its a bit of a dead-end, since I wasn't able to create notifications or make updating seemless, but nevertheless it was very educational.
 
 ## Current state:
